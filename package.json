@@ -1,6 +1,6 @@
 {
   "name": "kakashi-md-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/v-kakashi/kakashi-md-loader/issues"
   },
-  "homepage": "https://github.com/v-kakashi/kakashi-md-loader#readme"
+  "homepage": "https://github.com/v-kakashi/kakashi-md-loader#readme",
+    "dependencies": {
+    "atool-doc-util": "~0.1.0",
+    "ejs": "~2.4.1",
+    "loader-utils": "~0.2.12"
+  }
 }
