@@ -1,0 +1,19 @@
+{
+  "name": "kakashi-md-loader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/v-kakashi/kakashi-md-loader.git"
+  },
+  "author": "lmm0591@qq.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/v-kakashi/kakashi-md-loader/issues"
+  },
+  "homepage": "https://github.com/v-kakashi/kakashi-md-loader#readme"
+}
