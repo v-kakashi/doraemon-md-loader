@@ -51,12 +51,14 @@ module.exports = function(content) {
     `${resource.name}.js`,
   ];
 
+  var relativePath = path.relative(resourcePath, path.join('./', query.publicPath))
+
   const docHtml = ejs.render(fs.readFileSync(tpl, 'utf-8'), {
     file: {
       meta: meta,
       title: meta.title || resource.relativeToCwd + resource.ext,
       resource: resource,
-      relativePath: path.relative(resourcePath, path.join('./', query.publicPath)),
+      relativePath,
       demoPath: './' + resource.name + '-demo.html',
       script: scripts,
       html: html,
@@ -70,6 +72,7 @@ module.exports = function(content) {
       category: meta.category,
       title: meta.title || resource.relativeToCwd + resource.ext,
       resource: resource,
+      relativePath,
       script: scripts,
       html: html,
       style: style
