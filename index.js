@@ -51,13 +51,13 @@ module.exports = function(content) {
     `${resource.name}.js`,
   ];
 
-
   const docHtml = ejs.render(fs.readFileSync(tpl, 'utf-8'), {
     file: {
       meta: meta,
       title: meta.title || resource.relativeToCwd + resource.ext,
       resource: resource,
-      demoPath: './' + resource.relativeToDemo + '-demo.html',
+      relativePath: path.relative(resourcePath, path.join('./', query.publicPath)),
+      demoPath: './' + resource.name + '-demo.html',
       script: scripts,
       html: html,
       style: style,
