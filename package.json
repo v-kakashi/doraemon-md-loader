@@ -1,6 +1,6 @@
 {
   "name": "kakashi-md-loader",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,9 +16,11 @@
     "url": "https://github.com/v-kakashi/kakashi-md-loader/issues"
   },
   "homepage": "https://github.com/v-kakashi/kakashi-md-loader#readme",
-    "dependencies": {
+  "dependencies": {
     "atool-doc-util": "~0.1.0",
     "ejs": "~2.4.1",
-    "loader-utils": "~0.2.12"
+    "loader-utils": "~0.2.12",
+    "mark-twain": "^0.2.0-beta.4",
+    "ramda": "^0.22.1"
   }
 }
