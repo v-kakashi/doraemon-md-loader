@@ -52,7 +52,9 @@ module.exports = function(content) {
   ];
 
   var relativePath = path.relative(resourcePath, path.join('./', query.publicPath))
-
+  // fix window path bug
+  // 有多余的一级路径 ..
+  relativePath = relativePath.replace(/\\/g,"/").replace(/\/\.\.$/g, '')
   const docHtml = ejs.render(fs.readFileSync(tpl, 'utf-8'), {
     file: {
       meta: meta,
