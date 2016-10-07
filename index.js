@@ -52,14 +52,13 @@ module.exports = function(content) {
   ];
 
   var relativePath = path.relative(resourcePath, path.join('./', query.publicPath))
-  // fix window path bug
-  // 有多余的一级路径 ..
-  relativePath = relativePath.replace(/\\/g,"/").replace(/\/\.\.$/g, '')
+  relativePath = relativePath.replace(/\\/g,"/")
   const docHtml = ejs.render(fs.readFileSync(tpl, 'utf-8'), {
     file: {
       meta: meta,
       title: meta.title || resource.relativeToCwd + resource.ext,
       resource: resource,
+      duoshuoName: query.duoshuoName,
       relativePath,
       demoPath: './' + resource.name + '-demo.html',
       script: scripts,
@@ -74,7 +73,6 @@ module.exports = function(content) {
       category: meta.category,
       title: meta.title || resource.relativeToCwd + resource.ext,
       resource: resource,
-      relativePath,
       script: scripts,
       html: html,
       style: style
