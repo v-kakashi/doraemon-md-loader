@@ -73,6 +73,7 @@ module.exports = function(content) {
       category: meta.category,
       title: meta.title || resource.relativeToCwd + resource.ext,
       resource: resource,
+      relativePath,
       script: scripts,
       html: html,
       style: style
