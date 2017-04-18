@@ -27,12 +27,9 @@ function calculateDemoHtmlPath(cwd, source) {
 module.exports = function(content) {
 
   this.cacheable && this.cacheable();
-
-  const options = this.options;
+  const options = loaderUtils.getOptions(this) || {};
   const resourcePath = this.resourcePath;
   const resource = new util.Resource(options.cwd, options.demoSource, resourcePath);
-
-  const query = loaderUtils.parseQuery(this.query);
 
   const fileContentTree = MT(content).content;
   const meta = MT(content).meta;
@@ -40,7 +37,7 @@ module.exports = function(content) {
   const code = getChildren(fileContentTree.find(isCode));
   const style = getChildren(fileContentTree.find(isStyle));
   const html = getChildren(fileContentTree.find(isHtml));
-  const tpl = query.template;
+  const tpl = options.template;
   const demoTpl = tpl.replace(/.ejs$/,'-demo.ejs')
   this.addDependency(tpl);
   this.addDependency(demoTpl);
@@ -51,14 +48,14 @@ module.exports = function(content) {
     `${resource.name}.js`,
   ];
 
-  var relativePath = path.relative(resourcePath, path.join('./', query.publicPath))
+  var relativePath = path.relative(resourcePath, path.join('./', options.publicPath))
   relativePath = relativePath.replace(/\\/g,"/")
   const docHtml = ejs.render(fs.readFileSync(tpl, 'utf-8'), {
     file: {
       meta: meta,
       title: meta.title || resource.relativeToCwd + resource.ext,
       resource: resource,
-      duoshuoName: query.duoshuoName,
+      duoshuoName: options.duoshuoName,
       relativePath,
       demoPath: './' + resource.name + '-demo.html',
       script: scripts,
@@ -82,6 +79,5 @@ module.exports = function(content) {
 
   this.emitFile(calculateHtmlPath(options.cwd, resourcePath), docHtml);
   this.emitFile(calculateDemoHtmlPath(options.cwd, resourcePath), demoHtml);
-
   return code;
 }
