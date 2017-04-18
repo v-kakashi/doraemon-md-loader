@@ -25,7 +25,6 @@ function calculateDemoHtmlPath(cwd, source) {
 }
 
 module.exports = function(content) {
-
   this.cacheable && this.cacheable();
   const options = loaderUtils.getOptions(this) || {};
   const resourcePath = this.resourcePath;
@@ -33,15 +32,13 @@ module.exports = function(content) {
 
   const fileContentTree = MT(content).content;
   const meta = MT(content).meta;
-
-  const code = getChildren(fileContentTree.find(isCode));
+  const code = getChildren(fileContentTree.find(isCode)) || '';
   const style = getChildren(fileContentTree.find(isStyle));
   const html = getChildren(fileContentTree.find(isHtml));
   const tpl = options.template;
   const demoTpl = tpl.replace(/.ejs$/,'-demo.ejs')
   this.addDependency(tpl);
   this.addDependency(demoTpl);
-
 
   const scripts = [
     path.relative(resourcePath, path.join(resource.demoPath, 'common.js')),
@@ -79,5 +76,6 @@ module.exports = function(content) {
 
   this.emitFile(calculateHtmlPath(options.cwd, resourcePath), docHtml);
   this.emitFile(calculateDemoHtmlPath(options.cwd, resourcePath), demoHtml);
+ 
   return code;
 }
